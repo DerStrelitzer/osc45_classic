@@ -1,3 +1,4 @@
 .htaccess
+session/sess_*
 includes/configure.php
 admin/includes/configure.php
