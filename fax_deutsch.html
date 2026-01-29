@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html dir="ltr">
+<!--
+  osCommerce 2.2, mod osc45 
+  (c) 2026 Ingo Malchow
+  (c) 2003 osCommerce
+-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-style-type" content="text/css" />
+<title>Einzugsermächtigung</title>
+<style type="text/css">
+  body {margin:0;padding:0;text-align:center}
+  div {margin:0 auto;padding:0;width:600px}
+  h1 {margin:1em 0; padding: 0; font: bold 12pt/1.5 verdana,arial,sans-serif}
+  td, p {font: 12pt/1.5 verdana,arial,sans-serif;text-align:left}
+  table {width:600px}
+  p {margin:0;padding:1em 0}
+  small {font-size:10pt}
+  b {font-weight:bold}
+  input {margin: 1em 0; border:1px #000 dashed;}
+</style>
+<style type="text/css" media="print">
+  table {margin:2em;text-align:left}
+  p#noprint {display:none}
+  input {margin: 1em 0; border:none}
+</style>
+</head>
+<script type="text/javascript" language="javascript">
+  onload = function () {
+    document.getElementById('field1').focus();
+  }
+</script>
+<body>
+<div>
+  <h1>Ermächtigung zum Einzug von Forderungen durch Lastschriften</h1>
+  <table border="0" cellspacing="0" cellpadding="0" >
+    <tr>
+      <td colspan="2"> <hr size="2"> </td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><b>Zahlungsempfänger:</b></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top">Firmenname</td>
+      <td>
+        <b>xPrioS OnlineShop</b><br>
+        Max Mustermann
+      </td>
+    </tr>
+    <tr>
+      <td>Straße</td>
+      <td>Beispielstraße</td>
+    </tr>
+    <tr>
+      <td>Ort</td>
+      <td>D-17171 Beispielort</td>
+    </tr>
+    <tr>
+      <td>Tel.:</td>
+      <td>+49 (0) 800 - xx xx xx</td>
+    </tr>
+    <tr>
+      <td>Fax:</td>
+      <td>+49 (0) 800 - xx xx xx</td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"> <hr noshade size="1"> </td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        Hiermit ermächtige(n) ich/wir Sie widerruflich, die von mir/uns zu 
+        entrichtenden Zahlungen zu Lasten meines/unseres Kontos mit nachstehenden 
+        Daten durch Lastschrift einzuziehen.<br> 
+        Wenn mein/unser Konto die erforderliche Deckung nicht aufweist, besteht 
+        seitens des kontoführenden Instituts keine Verpflichtung zur Einlösung. 
+        Teileinlösungen werden im Lastschriftverfahren nicht vorgenommen.
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"> <hr size="1"> </td>
+    </tr>
+    <tr>
+      <td><b>Name des Kontinhabers:</b></td>
+      <td><input id ="field1" name="field1" type="text" size="50" tabindex="1"></td>
+    </tr>
+    <tr>
+      <td><b>Name des Kreditinstitutes:</b></td>
+      <td><input name="field2" type="text" size="50" tabindex="2"></td>
+    </tr>
+    <tr>
+      <td><b>BIC:</b> (Swift)</td>
+      <td><input name="field3" type="text" size="50" tabindex="3"></td>
+    </tr>
+    <tr>
+      <td><b>IBAN:</b><small><br>(nur Girokonten)</small></td>
+      <td><input name="field4" type="text" size="50" tabindex="4"></td>
+    </tr>
+    <tr>
+      <td colspan="2"> <hr size="1"> </td>
+    </tr>
+    <tr>
+      <td><input name="field5" type="text" size="40" tabindex="5" onblur="window.print();"></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2"> <hr noshade size="1"> </td>
+    </tr>
+    <tr>
+      <td align="center">Ort, Datum</td>
+      <td align="center">Unterschrift</td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+          <p><b>per&nbsp;FAX&nbsp;an:&nbsp;+49 (0) 800 - xx xx xx</b></p>
+          <p id="noprint"><a href="javascript:window.print(); ">[Seite ausdrucken]</a></p>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+
+</html>
