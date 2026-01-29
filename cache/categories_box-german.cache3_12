@@ -1,0 +1,28 @@
+s:2471:"<!-- categories //-->
+<!-- style by Ingo http://forums.oscommerce.de/index.php?showuser=36 //-->
+          <tr>
+            <td>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="100%" class="infoBoxHeading"><a href="http://localhost/osc45/sitemap.php">Kategorien</a></td>
+  </tr>
+</table>
+<table border="0" width="100%" cellspacing="0" cellpadding="1" class="infoBox">
+    <tr>
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="3" class="infoBoxContents">
+    <tr>
+        <td><img src="images/pixel_trans.gif" alt="" width="100%" height="1" /></td>
+  </tr>
+    <tr>
+        <td class="boxText"><a class="infoboxcontentlink passiv" href="hardware-1c.html">Hardware</a><a class="infoboxcontentlink passiv" href="software-2c.html">Software</a><a class="infoboxcontentlink activ" href="dvd-filme-3c.html">DVD&nbsp;Filme</a><a class="infoboxcontentlink passiv" href="dvd-filme-action-3_10c.html"><img src="images/infobox/category_sub_more_nohave.gif" alt="" width="9" height="12" />Action</a><a class="infoboxcontentlink passiv" href="dvd-filme-drama-3_15c.html"><img src="images/infobox/category_sub_more_nohave.gif" alt="" width="9" height="12" />Drama</a><a class="infoboxcontentlink activ" href="dvd-filme-komoedie-3_12c.html"><img src="images/infobox/category_sub_more_nohave.gif" alt="" width="9" height="12" />Komödie</a><a class="infoboxcontentlink passiv" href="dvd-filme-science-fiction-3_11c.html"><img src="images/infobox/category_sub_more_nohave.gif" alt="" width="9" height="12" />Science&nbsp;Fiction</a><a class="infoboxcontentlink passiv" href="dvd-filme-thriller-3_14c.html"><img src="images/infobox/category_sub_more_nohave.gif" alt="" width="9" height="12" />Thriller</a><a class="infoboxcontentlink passiv" href="dvd-filme-zeichentrick-3_13c.html"><img src="images/infobox/category_sub_last.gif" alt="" width="9" height="12" />Zeichentrick</a><img src="images/pixel_trans.gif" alt="" width="5" height="5" /><a href="http://localhost/osc45/all_products.php" class="infoboxcontentlink">Alle Artikel</a><a href="http://localhost/osc45/specials.php" class="infoboxcontentlink">Angebote</a><a href="http://localhost/osc45/products_new.php" class="infoboxcontentlink">Neue Produkte</a></td>
+  </tr>
+    <tr>
+        <td><img src="images/pixel_trans.gif" alt="" width="100%" height="1" /></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+            </td>
+          </tr>
+<!-- categories_eof //-->";
