@@ -1,4 +1,5 @@
 .htaccess
 session/sess_*
 includes/configure.php
+admin/backups/*.*
 admin/includes/configure.php
