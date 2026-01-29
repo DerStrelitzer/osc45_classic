@@ -2,9 +2,13 @@ A warm hello to all old friends of osCommerce.
 Version 2.2 was very popular and widely used for a long time. Many shops used it as a base and customized it.
 I also set up several shops with this codebase. osCommerce couldn't keep up with the rapid development of PHP. Why this happened is something you'd have to ask the developer.
 I've published this repository to show that it's quite possible to run osCommerce 2.2 with current server software. Testing was done on the following web server:
+
 -Apache 2.4.35
+
 -PHP 8.2.4 (error_reporting(E_ALL))
+
 -MySQL 8.0.41
+
 After a quick look at the PHP 8.5 release notes, I believe it should also work with that.
 I welcome any bug reports or suggestions.
 Please use this version "osc45" for your shop or as inspiration to update your shop.
