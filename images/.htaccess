@@ -1,1 +1,9 @@
-
+# .htaccess /images
+# (c) 2012 Ingo Malchow
+# 
+Order Deny,Allow
+Deny from all
+<FilesMatch  "(.+)\.(GIF|gif|JPG|jpg|JPEG|jpeg|PNG|png|SWF|swf)$">
+Allow from all
+Satisfy all
+</FilesMatch>
