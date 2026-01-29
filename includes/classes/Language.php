@@ -1,0 +1,116 @@
+<?php
+/*
+  $Id: language.php,v 1.6 2003/06/28 16:53:09 dgw_ Exp $
+
+  osCommerce, Open Source E-Commerce Solutions
+  http://www.oscommerce.com
+
+  Copyright (c) 2026 xPrioS
+  Copyright (c) 2003 osCommerce
+
+  Released under the GNU General Public License
+
+  browser language detection logic Copyright phpMyAdmin (select_lang.lib.php3 v1.24 04/19/2002)
+                                   Copyright Stephane Garin <sgarin@sgarin.com> (detect_language.php v0.1 04/02/2002)
+*/
+
+class Language 
+{
+    public 
+        $catalog_languages = [], 
+        $browser_languages = '', 
+        $language = '',
+        $languages = [
+            'ar' => 'ar([-_][[:alpha:]]{2})?|arabic',
+            'bg' => 'bg|bulgarian',
+            'br' => 'pt[-_]br|brazilian portuguese',
+            'ca' => 'ca|catalan',
+            'cs' => 'cs|czech',
+            'da' => 'da|danish',
+            'de' => 'de([-_][[:alpha:]]{2})?|german',
+            'el' => 'el|greek',
+            'en' => 'en([-_][[:alpha:]]{2})?|english',
+            'es' => 'es([-_][[:alpha:]]{2})?|spanish',
+            'et' => 'et|estonian',
+            'fi' => 'fi|finnish',
+            'fr' => 'fr([-_][[:alpha:]]{2})?|french',
+            'gl' => 'gl|galician',
+            'he' => 'he|hebrew',
+            'hu' => 'hu|hungarian',
+            'id' => 'id|indonesian',
+            'it' => 'it|italian',
+            'ja' => 'ja|japanese',
+            'ko' => 'ko|korean',
+            'ka' => 'ka|georgian',
+            'lt' => 'lt|lithuanian',
+            'lv' => 'lv|latvian',
+            'nl' => 'nl([-_][[:alpha:]]{2})?|dutch',
+            'no' => 'no|norwegian',
+            'pl' => 'pl|polish',
+            'pt' => 'pt([-_][[:alpha:]]{2})?|portuguese',
+            'ro' => 'ro|romanian',
+            'ru' => 'ru|russian',
+            'sk' => 'sk|slovak',
+            'sr' => 'sr|serbian',
+            'sv' => 'sv|swedish',
+            'th' => 'th|thai',
+            'tr' => 'tr|turkish',
+            'uk' => 'uk|ukrainian',
+            'tw' => 'zh[-_]tw|chinese traditional',
+            'zh' => 'zh|chinese simplified'
+        ];
+
+    public function __construct($lng = '')
+    {
+        $this->read_data();
+        $this->set_language($lng);
+    }
+
+    public function read_data($languages_dir = '') {
+        $query = tep_db_query(
+            "select "
+            . "languages_id, name, code, image, directory, page_title, page_keywords, page_description "
+            . "from " . TABLE_LANGUAGES
+        );
+        $return = [];
+        while ($langs = tep_db_fetch_array($query)) {
+            $this->catalog_languages[$langs['code']] = [
+                'id'               => $langs['languages_id'],
+                'name'             => $langs['name'],
+                'image'            => $langs['image'],
+                'directory'        => $langs['directory'],
+                'code'             => $langs['code'],
+                'page_title'       => $langs['page_title'],
+                'page_keywords'    => $langs['page_keywords'],
+                'page_description' => $langs['page_description']
+            ];
+            if ($languages_dir == $langs['directory']) {
+                $return = $this->catalog_languages[$langs['code']];
+            }
+        }
+        tep_db_free_result($query);
+        return;
+    }
+
+    public function set_language($language) {
+        if (tep_not_null($language) && isset($this->catalog_languages[$language])) {
+            $this->language = $this->catalog_languages[$language];
+        } else {
+            $this->language = $this->catalog_languages[DEFAULT_LANGUAGE];
+        }
+    }
+
+    public function get_browser_language() 
+    {
+        $this->browser_languages = explode(',', getenv('HTTP_ACCEPT_LANGUAGE'));
+
+        for ($i=0, $n=sizeof($this->browser_languages); $i<$n; $i++) {
+            foreach ($this->languages as $key => $value) {
+                if (preg_match('/^(' . preg_quote($value, '/') . ')(;q=[0-9]\\.[0-9])?$/i', $this->browser_languages[$i]) && isset($this->catalog_languages[$key])) {
+                    $this->language = $this->catalog_languages[$key];
+                    break 2;
+                }
+            }
+        }
+    }
+}
