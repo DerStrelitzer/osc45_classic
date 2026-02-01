@@ -622,7 +622,7 @@ if (STORE_PAGE_PARSE_TIME == 'ja') {
 }
 
 // Ingo, besuchte Produkte
-if ($session_started == true && (!(isset($_SESSION['viewed_products']) && is_object($_SESSION['viewed_products']))) {
+if ($session_started == true && (!(isset($_SESSION['viewed_products']) && is_object($_SESSION['viewed_products'])))) {
     $_SESSION['viewed_products'] = new viewed_products;
 }
 
@@ -630,3 +630,4 @@ if ($session_started == true && (!(isset($_SESSION['viewed_products']) && is_obj
 $store_owner_email_address = '';
 for ($i=0, $j=strlen(STORE_OWNER_EMAIL_ADDRESS); $i<$j; $i++) $store_owner_email_address .= '&#' . ord(substr(STORE_OWNER_EMAIL_ADDRESS, $i, 1)) . ';';
 $email_address_crypted_mailto = '&#109;&#97;&#105;&#108;&#116;&#111;&#58;';
+
