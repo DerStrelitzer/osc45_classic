@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2021 xPrioS
+  Copyright (c) 2026 xPrioS
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
@@ -41,7 +41,8 @@
   //
   //
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  function tep_validate_email($email) {
+function tep_validate_email($email)
+{
     $valid_address = true;
 
     $mail_pat = '/^(.+)@(.+)$/i';
@@ -54,65 +55,68 @@
     $domain_pat = "/^$atom(\.$atom)*$/i";
 
     if (preg_match($mail_pat, $email, $components)) {
-      $user = $components[1];
-      $domain = $components[2];
-      // validate user
-      if (preg_match($user_pat, $user)) {
-        // validate domain
-        if (preg_match($ip_domain_pat, $domain, $ip_components)) {
-          // this is an IP address
-      	  for ($i=1;$i<=4;$i++) {
-      	    if ($ip_components[$i] > 255) {
-      	      $valid_address = false;
-      	      break;
-      	    }
-          }
-        } else {
-          // Domain is a name, not an IP
-          if (preg_match($domain_pat, $domain)) {
-            /* domain name seems valid, but now make sure that it ends in a valid TLD or ccTLD
-               and that there's a hostname preceding the domain or country. */
-            $domain_components = explode(".", $domain);
-            // Make sure there's a host name preceding the domain.
-            if (sizeof($domain_components) < 2) {
-              $valid_address = false;
-            } else {
-              $top_level_domain = strtolower($domain_components[sizeof($domain_components)-1]);
-              // Allow all 2-letter TLDs (ccTLDs)
-              if (preg_match('/^[a-z][a-z]$/i', $top_level_domain) != 1) {
-                $tld_pattern = '';
-                // Get authorized TLDs from text file
-                $tlds = file(DIR_WS_INCLUDES . 'tld.txt');
-                foreach ($tlds as $line) {
-                  // Get rid of comments
-                  $words = explode('#', $line);
-                  $tld = trim($words[0]);
-                  // TLDs should be 3 letters or more
-                  if (preg_match('/^[a-z]{3,}$/i', $tld) == 1) {
-                    $tld_pattern .= '^' . $tld . '$|';
-                  }
+        $user = $components[1];
+        $domain = $components[2];
+        // validate user
+        if (preg_match($user_pat, $user)) {
+            // validate domain
+            if (preg_match($ip_domain_pat, $domain, $ip_components)) {
+                // this is an IP address
+                for ($i=1;$i<=4;$i++) {
+                    if ($ip_components[$i] > 255) {
+                        $valid_address = false;
+                        break;
+                    }
                 }
-                // Remove last '|'
-                $tld_pattern = substr($tld_pattern, 0, -1);
-                if (preg_match("/$tld_pattern/i", $top_level_domain) == 0) {
+            } else {
+                // Domain is a name, not an IP
+                if (preg_match($domain_pat, $domain)) {
+                    /* domain name seems valid, but now make sure that it ends in a valid TLD or ccTLD
+                    and that there's a hostname preceding the domain or country. */
+                    $domain_components = explode(".", $domain);
+                    // Make sure there's a host name preceding the domain.
+                    if (sizeof($domain_components) < 2) {
+                        $valid_address = false;
+                    } else {
+                        $top_level_domain = strtolower($domain_components[sizeof($domain_components)-1]);
+                        // Allow all 2-letter TLDs (ccTLDs)
+                        if (preg_match('/^[a-z][a-z]$/i', $top_level_domain) != 1) {
+                            $tld_pattern = '';
+                            // Get authorized TLDs from text file
+                            $tlds = file(DIR_WS_INCLUDES . 'tld.txt');
+                            foreach ($tlds as $line) {
+                                // Get rid of comments
+                                $words = explode('#', $line);
+                                $tld = trim($words[0]);
+                                // TLDs should be 3 letters or more
+                                if (preg_match('/^[a-z]{3,}$/i', $tld) == 1) {
+                                    $tld_pattern .= '^' . $tld . '$|';
+                                }
+                            }
+                            // Remove last '|'
+                            $tld_pattern = substr($tld_pattern, 0, -1);
+                            if (preg_match("/$tld_pattern/i", $top_level_domain) == 0) {
+                                $valid_address = false;
+                            }
+                        }
+                    }
+                } else {
                     $valid_address = false;
                 }
-              }
             }
-          } else {
-      	    $valid_address = false;
-      	  }
-      	}
-      } else {
-        $valid_address = false;
-      }
+        } else {
+            $valid_address = false;
+        }
     } else {
-      $valid_address = false;
-    }
-    if ($valid_address == true && (defined('ENTRY_EMAIL_ADDRESS_CHECK') && (ENTRY_EMAIL_ADDRESS_CHECK == 1 || ENTRY_EMAIL_ADDRESS_CHECK == 'true')) && function_exists('checkdnsrr')) {
-      if (!checkdnsrr($domain, "MX") && !checkdnsrr($domain, "A")) {
         $valid_address = false;
-      }
+    }
+    if ($valid_address == true && 
+        (defined('ENTRY_EMAIL_ADDRESS_CHECK') && (ENTRY_EMAIL_ADDRESS_CHECK == 1 || ENTRY_EMAIL_ADDRESS_CHECK == 'true')) && 
+        function_exists('checkdnsrr')) {
+
+        if (!checkdnsrr($domain, "MX") && !checkdnsrr($domain, "A")) {
+            $valid_address = false;
+        }
     }
     return $valid_address;
-  }
+}
