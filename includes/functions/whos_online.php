@@ -5,21 +5,22 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2021 xPrioS
+  Copyright (c) 2026 xPrioS
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
 */
 
-  function tep_update_whos_online() {
+function tep_update_whos_online()
+{
     global $spider_flag, $user_agent;
 
     if (isset($_SESSION['customer_id'])) {
-      $wo_customer_id = $_SESSION['customer_id'];
-      $wo_full_name = $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'];
+        $wo_customer_id = $_SESSION['customer_id'];
+        $wo_full_name = $_SESSION['customer_first_name'] . ' ' . $_SESSION['customer_last_name'];
     } else {
-      $wo_customer_id = '0';
-      $wo_full_name = $spider_flag ? $user_agent : 'Gast';
+        $wo_customer_id = '0';
+        $wo_full_name = $spider_flag ? $user_agent : 'Gast';
     }
 
     $wo_full_name = substr($wo_full_name, 0, 64);
@@ -37,9 +38,26 @@
     $stored_customer = tep_db_fetch_array($stored_customer_query);
 
     if ($stored_customer['count'] > 0) {
-      tep_db_query("update " . TABLE_WHOS_ONLINE . " set customer_id = '" . (int)$wo_customer_id . "', full_name = '" . tep_db_input($wo_full_name) . "', ip_address = '" . tep_db_input($wo_ip_address) . "', time_last_click = '" . tep_db_input($current_time) . "', last_page_url = '" . tep_db_input($wo_last_page_url) . "' where session_id = '" . tep_db_input($wo_session_id) . "'");
+        $update_data = [
+            'customer_id'     => (int)$wo_customer_id,
+            'full_name'       => $wo_full_name,
+            'ip_address'      => $wo_ip_address,
+            'time_last_click' => $current_time,
+            'last_page_url'   => $wo_last_page_url,
+        ];
+        tep_db_perform(TABLE_WHOS_ONLINE, $update_data, 'update', "session_id = '" . tep_db_input($wo_session_id) . "'");
+
     } else {
-      tep_db_query("optimize table " . TABLE_WHOS_ONLINE);
-      tep_db_query("insert into " . TABLE_WHOS_ONLINE . " (customer_id, full_name, session_id, ip_address, time_entry, time_last_click, last_page_url) values ('" . (int)$wo_customer_id . "', '" . tep_db_input($wo_full_name) . "', '" . tep_db_input($wo_session_id) . "', '" . tep_db_input($wo_ip_address) . "', '" . tep_db_input($current_time) . "', '" . tep_db_input($current_time) . "', '" . tep_db_input($wo_last_page_url) . "')");
+        $insert_data = [
+            'customer_id'     => $wo_customer_id,
+            'full_name'       => $wo_full_name,
+            'session_id'      => $wo_session_id,
+            'ip_address'      => $wo_ip_address,
+            'time_entry'      => $current_time,
+            'time_last_click' => $current_time,
+            'last_page_url'   => $wo_last_page_url
+        ];
+        tep_db_query("optimize table " . TABLE_WHOS_ONLINE);
+        tep_db_perform(TABLE_WHOS_ONLINE, $insert_data);
     }
-  }
+}
