@@ -5,7 +5,7 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2025 xPrioS
+  Copyright (c) 2026 xPrioS
   Copyright (c) 2003 osCommerce
 
   Released under the GNU General Public License
