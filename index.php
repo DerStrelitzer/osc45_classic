@@ -19,7 +19,6 @@ if (!@define('CURRENT_PAGE', basename(__FILE__))) {
 require('includes/application_top.php');
 
 $output = '';
-$page_keywords = $default_keywords;
 if (isset($_GET['manufacturers_id']) && !is_numeric($_GET['manufacturers_id']=='')) {
     unset($_GET['manufacturers_id']);
 }
@@ -431,3 +430,4 @@ if ($category_depth == 'nested') {
 <?php
 require(DIR_WS_INCLUDES . 'column_right.php');
 require(DIR_WS_INCLUDES . 'footer.php');
+
