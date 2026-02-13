@@ -187,14 +187,15 @@ function tep_random_select($query)
 // TABLES: products
 function tep_get_products_name($product_id, $language = '')
 {
+    $return = '';
     if (empty($language)) {
         $language = $GLOBALS['languages_id'];
     }
     $product_query = tep_db_query("select products_name from " . TABLE_PRODUCTS_DESCRIPTION . " where products_id = '" . (int)$product_id . "' and language_id = '" . (int)$language . "'");
-    $product = tep_db_fetch_array($product_query);
-
-    return $product['products_name'];
-
+    if ($product = tep_db_fetch_array($product_query)) {
+        $return = $product['products_name'];
+    }
+    return $return;
 }
 
 ////
@@ -1511,3 +1512,4 @@ function tep_convert_linefeeds($from, $to, $string)
 {
     return str_replace($from, $to, $string);
 }
+
