@@ -77,7 +77,8 @@ function xprios_date_string($format = '', $time = null, $length = 'long')
             '%Y' => date('Y', $time),
             '%H' => date('H', $time),
             '%M' => date('i', $time),
-            '%S' => date('s', $time)
+            '%S' => date('s', $time),
+            '%a' => date('a', $time)
         ]
     );
     return $date_string;
@@ -1512,4 +1513,5 @@ function tep_convert_linefeeds($from, $to, $string)
 {
     return str_replace($from, $to, $string);
 }
+
 
